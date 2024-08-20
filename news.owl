@@ -1,0 +1,1223 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY schema "http://schema.org/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY News "http://www.semanticweb.org/hadia/ontologies/2023/10/News#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/hadia/ontologies/2023/10/untitled-ontology-5#"
+     xml:base="http://www.semanticweb.org/hadia/ontologies/2023/10/untitled-ontology-5"
+     xmlns:schema="http://schema.org/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:News="http://www.semanticweb.org/hadia/ontologies/2023/10/News#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/hadia/ontologies/2023/10/News"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Advertised -->
+
+    <owl:ObjectProperty rdf:about="&News;Advertised">
+        <rdfs:comment>News, new events and news articles are being advertised by advertisor</rdfs:comment>
+        <rdfs:domain rdf:resource="&News;Advertisor"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&News;News"/>
+                    <rdf:Description rdf:about="&News;NewsEvents"/>
+                    <rdf:Description rdf:about="&News;schema:NewsArticle"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Broadcast -->
+
+    <owl:ObjectProperty rdf:about="&News;Broadcast">
+        <rdfs:comment>News, new events and news articles are being broadcast by broadcaster</rdfs:comment>
+        <rdfs:domain rdf:resource="&News;Broadcaster"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&News;News"/>
+                    <rdf:Description rdf:about="&News;NewsEvents"/>
+                    <rdf:Description rdf:about="&News;schema:NewsArticle"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Contain -->
+
+    <owl:ObjectProperty rdf:about="&News;Contain">
+        <rdfs:comment>News contain news events, news articles, organizations, persons nd vehicles</rdfs:comment>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&News;SocialMediaObject"/>
+                    <rdf:Description rdf:about="&News;schema:Person"/>
+                    <rdf:Description rdf:about="&News;schema:Vehicle"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&News;schema:Organization"/>
+                    <rdf:Description rdf:about="&News;schema:Place"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Edits -->
+
+    <owl:ObjectProperty rdf:about="&News;Edits">
+        <rdfs:comment>editors edits news events and news articles</rdfs:comment>
+        <rdfs:domain rdf:resource="&News;schema:Editor"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&News;News"/>
+                    <rdf:Description rdf:about="&News;NewsEvents"/>
+                    <rdf:Description rdf:about="&News;schema:NewsArticle"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#HasEngagement -->
+
+    <owl:ObjectProperty rdf:about="&News;HasEngagement">
+        <rdfs:comment>News, new events and news articles has news engagements</rdfs:comment>
+        <rdfs:range rdf:resource="&News;NewsEngagement"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&News;News"/>
+                    <rdf:Description rdf:about="&News;NewsEvents"/>
+                    <rdf:Description rdf:about="&News;schema:NewsArticle"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#InvolvedIn -->
+
+    <owl:ObjectProperty rdf:about="&News;InvolvedIn">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:comment>Person, organizations, and vehicles are invlved in News, new events and news articles</rdfs:comment>
+        <rdfs:domain rdf:resource="&News;schema:Person"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&News;News"/>
+                    <rdf:Description rdf:about="&News;NewsEngagement"/>
+                    <rdf:Description rdf:about="&News;NewsEvents"/>
+                    <rdf:Description rdf:about="&News;schema:NewsArticle"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Reports -->
+
+    <owl:ObjectProperty rdf:about="&News;Reports">
+        <rdfs:comment>reporter reports news, news events and news articles</rdfs:comment>
+        <rdfs:domain rdf:resource="&News;Reporter"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&News;News"/>
+                    <rdf:Description rdf:about="&News;NewsEvents"/>
+                    <rdf:Description rdf:about="&News;schema:NewsArticle"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#TookPalcedIn -->
+
+    <owl:ObjectProperty rdf:about="&News;TookPalcedIn">
+        <rdfs:comment>News and new events took place in organizations.</rdfs:comment>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&News;News"/>
+                    <rdf:Description rdf:about="&News;NewsEvents"/>
+                    <rdf:Description rdf:about="&News;schema:NewsArticle"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&News;schema:Organization"/>
+                    <rdf:Description rdf:about="&News;schema:Place"/>
+                    <rdf:Description rdf:about="&News;schema:Time"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
+
+    <rdf:Description rdf:about="&owl;topObjectProperty">
+        <rdfs:range rdf:resource="&News;schema:Place"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#CategorizedAs -->
+
+    <owl:DatatypeProperty rdf:about="&News;CategorizedAs">
+        <rdfs:domain rdf:resource="&News;News"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#DateOfOccurance -->
+
+    <owl:DatatypeProperty rdf:about="&News;DateOfOccurance">
+        <rdfs:comment>News, new events and news articles have a date of occurance.</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&News;Day"/>
+                    <rdf:Description rdf:about="&News;schema:Date"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#EventHappenedIn -->
+
+    <owl:DatatypeProperty rdf:about="&News;EventHappenedIn">
+        <rdfs:comment>New events happened in places and organizations.</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&News;schema:Organization"/>
+                    <rdf:Description rdf:about="&News;schema:Place"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Names -->
+
+    <owl:DatatypeProperty rdf:about="&News;Names">
+        <rdfs:comment>Every person has a name</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;Name"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&News;NewsEvents"/>
+                    <rdf:Description rdf:about="&News;schema:Organization"/>
+                    <rdf:Description rdf:about="&News;schema:Person"/>
+                    <rdf:Description rdf:about="&News;schema:Place"/>
+                    <rdf:Description rdf:about="&News;schema:Vehicle"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#News -->
+
+    <owl:DatatypeProperty rdf:about="&News;News">
+        <rdfs:comment>News has NewsEngagement, NewsEvents and News Articles</rdfs:comment>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&News;News"/>
+                    <rdf:Description rdf:about="&News;NewsEngagement"/>
+                    <rdf:Description rdf:about="&News;NewsEvents"/>
+                    <rdf:Description rdf:about="&News;schema:NewsArticle"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://schema.org/Blog -->
+
+    <owl:Class rdf:about="&schema;Blog">
+        <rdfs:subClassOf rdf:resource="&News;NewsEngagement"/>
+        <rdfs:comment>Blogs related to news, news events and news articles are there on social media platforms</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Advertisor -->
+
+    <owl:Class rdf:about="&News;Advertisor">
+        <rdfs:subClassOf rdf:resource="&News;schema:Person"/>
+        <rdfs:comment>Advertisor Advertised News, NewsEvents and NewsArticles</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Airoplane -->
+
+    <owl:Class rdf:about="&News;Airoplane">
+        <rdfs:subClassOf rdf:resource="&News;schema:Vehicle"/>
+        <rdfs:comment>Areoplanes are involved in news, news events and news articles</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Audio -->
+
+    <owl:Class rdf:about="&News;Audio">
+        <rdfs:subClassOf rdf:resource="&News;SocialMediaObject"/>
+        <rdfs:comment>Audios are involved in Social media object for news, news events and news articles.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Bloggers -->
+
+    <owl:Class rdf:about="&News;Bloggers">
+        <rdfs:subClassOf rdf:resource="&News;schema:Person"/>
+        <rdfs:comment>Bloggers Blogged News and NewsArticle</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Broadcaster -->
+
+    <owl:Class rdf:about="&News;Broadcaster">
+        <rdfs:subClassOf rdf:resource="&News;schema:Person"/>
+        <rdfs:comment>BroadCaster Broadcast the news, news articles</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Bus -->
+
+    <owl:Class rdf:about="&News;Bus">
+        <rdfs:subClassOf rdf:resource="&News;schema:Vehicle"/>
+        <rdfs:comment>Buses are involved in news, news events and news articles</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Cart -->
+
+    <owl:Class rdf:about="&News;Cart">
+        <rdfs:subClassOf rdf:resource="&News;schema:Vehicle"/>
+        <rdfs:comment>Cart/ carts are involved in news, news events and news articles</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Channels -->
+
+    <owl:Class rdf:about="&News;Channels">
+        <rdfs:subClassOf rdf:resource="&News;News"/>
+        <rdfs:comment>Channels show news, and news events</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Citizens -->
+
+    <owl:Class rdf:about="&News;Citizens">
+        <rdfs:subClassOf rdf:resource="&News;schema:Person"/>
+        <rdfs:comment>Citizens are involved in News events</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#ColdCurrent -->
+
+    <owl:Class rdf:about="&News;ColdCurrent">
+        <rdfs:subClassOf rdf:resource="&News;Weather"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Criminals -->
+
+    <owl:Class rdf:about="&News;Criminals">
+        <rdfs:subClassOf rdf:resource="&News;schema:Person"/>
+        <rdfs:comment>Criminals are involved in News events</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Cycle -->
+
+    <owl:Class rdf:about="&News;Cycle">
+        <rdfs:subClassOf rdf:resource="&News;schema:Vehicle"/>
+        <rdfs:comment>Cycles are involved in news, news events and news articles</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Day -->
+
+    <owl:Class rdf:about="&News;Day">
+        <rdfs:subClassOf rdf:resource="&News;schema:Time"/>
+        <rdfs:comment>News Events occur on days.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#ElectionComission -->
+
+    <owl:Class rdf:about="&News;ElectionComission">
+        <rdfs:subClassOf rdf:resource="&News;schema:GovernmentOrganization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Engagement -->
+
+    <owl:Class rdf:about="&News;Engagement">
+        <rdfs:subClassOf rdf:resource="&News;NewsEngagement"/>
+        <rdfs:comment>News, news events and news articles has engagements</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Entertainment -->
+
+    <owl:Class rdf:about="&News;Entertainment">
+        <rdfs:subClassOf rdf:resource="&News;NewsTypes"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#EventCategory -->
+
+    <owl:Class rdf:about="&News;EventCategory">
+        <rdfs:subClassOf rdf:resource="&News;NewsEvents"/>
+        <rdfs:comment>Every news even has a event category and event topic</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#EventTopic -->
+
+    <owl:Class rdf:about="&News;EventTopic">
+        <rdfs:subClassOf rdf:resource="&News;NewsEvents"/>
+        <rdfs:comment>Every news even has a event category and event topic</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#ExternalAffairs -->
+
+    <owl:Class rdf:about="&News;ExternalAffairs">
+        <rdfs:subClassOf rdf:resource="&News;NewsTypes"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Image -->
+
+    <owl:Class rdf:about="&News;Image">
+        <rdfs:subClassOf rdf:resource="&News;SocialMediaObject"/>
+        <rdfs:comment>Images are involved in Social media object for news, news events and news articles.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#InternalAffairs -->
+
+    <owl:Class rdf:about="&News;InternalAffairs">
+        <rdfs:subClassOf rdf:resource="&News;NewsTypes"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Journalist -->
+
+    <owl:Class rdf:about="&News;Journalist">
+        <rdfs:subClassOf rdf:resource="&News;schema:Person"/>
+        <rdfs:comment>Journalist are involved in News events</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Like -->
+
+    <owl:Class rdf:about="&News;Like">
+        <rdfs:subClassOf rdf:resource="&News;NewsEngagement"/>
+        <rdfs:comment>Newsevents or news articles get likes on social media platforms</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#News -->
+
+    <owl:Class rdf:about="&News;News">
+        <rdfs:comment>News has NewsEngagement, NewsEvents and News Articles</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#NewsCategory -->
+
+    <owl:Class rdf:about="&News;NewsCategory">
+        <rdfs:subClassOf rdf:resource="&News;News"/>
+        <rdfs:comment>every news has News Category</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#NewsEngagement -->
+
+    <owl:Class rdf:about="&News;NewsEngagement">
+        <rdfs:comment>News engagement has engagement, likes, repost, reviews, comments, subscription, serch, share and Tagging</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#NewsEvents -->
+
+    <owl:Class rdf:about="&News;NewsEvents">
+        <rdfs:comment>News events has news categories, event topics, and place of event happening</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#NewsTypes -->
+
+    <owl:Class rdf:about="&News;NewsTypes">
+        <rdfs:subClassOf rdf:resource="&News;News"/>
+        <rdfs:comment>Every news has news types</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Politicians -->
+
+    <owl:Class rdf:about="&News;Politicians">
+        <rdfs:subClassOf rdf:resource="&News;schema:Person"/>
+        <rdfs:comment>Politicians are involved in News events</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Politics -->
+
+    <owl:Class rdf:about="&News;Politics">
+        <rdfs:subClassOf rdf:resource="&News;NewsTypes"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#PrivateSector -->
+
+    <owl:Class rdf:about="&News;PrivateSector">
+        <rdfs:subClassOf rdf:resource="&News;schema:Organization"/>
+        <rdfs:comment>News and news events occur in private sector organizations</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Rain -->
+
+    <owl:Class rdf:about="&News;Rain">
+        <rdfs:subClassOf rdf:resource="&News;Weather"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Reporter -->
+
+    <owl:Class rdf:about="&News;Reporter">
+        <rdfs:subClassOf rdf:resource="&News;schema:Person"/>
+        <rdfs:comment>Reporter reports news, news events and news articles.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Repost -->
+
+    <owl:Class rdf:about="&News;Repost">
+        <rdfs:subClassOf rdf:resource="&News;NewsEngagement"/>
+        <rdfs:comment>Newsevents or news articles get reposted on social media platforms</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Search -->
+
+    <owl:Class rdf:about="&News;Search">
+        <rdfs:subClassOf rdf:resource="&News;NewsEngagement"/>
+        <rdfs:comment>Different types of news, news events and news articles are being searched on social media platforms</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Share -->
+
+    <owl:Class rdf:about="&News;Share">
+        <rdfs:subClassOf rdf:resource="&News;NewsEngagement"/>
+        <rdfs:comment>News, news events, and news articles are being shared.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#SocialMediaObject -->
+
+    <owl:Class rdf:about="&News;SocialMediaObject">
+        <rdfs:comment>Social medias contain social media objects for news, news events and news artciles.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#SupremeCourt -->
+
+    <owl:Class rdf:about="&News;SupremeCourt">
+        <rdfs:subClassOf rdf:resource="&News;schema:GovernmentOrganization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Tagging -->
+
+    <owl:Class rdf:about="&News;Tagging">
+        <rdfs:subClassOf rdf:resource="&News;NewsEngagement"/>
+        <rdfs:comment>News, news events, and news articles got Tags</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Terrorists -->
+
+    <owl:Class rdf:about="&News;Terrorists">
+        <rdfs:subClassOf rdf:resource="&News;schema:Person"/>
+        <rdfs:comment>Terrorists are involved in News events</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Text -->
+
+    <owl:Class rdf:about="&News;Text">
+        <rdfs:subClassOf rdf:resource="&News;SocialMediaObject"/>
+        <rdfs:comment>Texts are involved in Social media object for news, news events and news articles.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Topic -->
+
+    <owl:Class rdf:about="&News;Topic">
+        <rdfs:subClassOf rdf:resource="&News;News"/>
+        <rdfs:subClassOf rdf:resource="&News;schema:NewsArticle"/>
+        <rdfs:comment>Every news type has a topic or category</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Train -->
+
+    <owl:Class rdf:about="&News;Train">
+        <rdfs:subClassOf rdf:resource="&News;schema:Vehicle"/>
+        <rdfs:comment>Trains are involved in news, news events and news articles</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Typhoon -->
+
+    <owl:Class rdf:about="&News;Typhoon">
+        <rdfs:subClassOf rdf:resource="&News;Weather"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Victims -->
+
+    <owl:Class rdf:about="&News;Victims">
+        <rdfs:subClassOf rdf:resource="&News;schema:Person"/>
+        <rdfs:comment>Victims are involved in News events</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Video -->
+
+    <owl:Class rdf:about="&News;Video">
+        <rdfs:subClassOf rdf:resource="&News;SocialMediaObject"/>
+        <rdfs:comment>Videos are involved in Social media object for news, news events and news articles.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Weather -->
+
+    <owl:Class rdf:about="&News;Weather">
+        <rdfs:subClassOf rdf:resource="&News;NewsTypes"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Websites -->
+
+    <owl:Class rdf:about="&News;Websites">
+        <rdfs:subClassOf rdf:resource="&News;News"/>
+        <rdfs:comment>There are different websites for news, news events and news articles</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:Car -->
+
+    <owl:Class rdf:about="&News;schema:Car">
+        <rdfs:subClassOf rdf:resource="&News;schema:Vehicle"/>
+        <rdfs:comment>Cars are involved in news, news events and news articles</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:Category -->
+
+    <owl:Class rdf:about="&News;schema:Category">
+        <rdfs:subClassOf rdf:resource="&News;schema:NewsArticle"/>
+        <rdfs:comment>Every news article has category</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:City -->
+
+    <owl:Class rdf:about="&News;schema:City">
+        <rdfs:subClassOf rdf:resource="&News;schema:Place"/>
+        <rdfs:comment>News Events occur in cities</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:Comment -->
+
+    <owl:Class rdf:about="&News;schema:Comment">
+        <rdfs:subClassOf rdf:resource="&News;NewsEngagement"/>
+        <rdfs:comment>News, news events, and news articles got comments</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:Country -->
+
+    <owl:Class rdf:about="&News;schema:Country">
+        <rdfs:subClassOf rdf:resource="&News;schema:Place"/>
+        <rdfs:comment>News Events occur in countries</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:Date -->
+
+    <owl:Class rdf:about="&News;schema:Date">
+        <rdfs:subClassOf rdf:resource="&News;schema:Time"/>
+        <rdfs:comment>News Events occur on dates.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:Editor -->
+
+    <owl:Class rdf:about="&News;schema:Editor">
+        <rdfs:subClassOf rdf:resource="&News;schema:Person"/>
+        <rdfs:comment>Editor edits News, news events and news articles</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:GovernmentOrganization -->
+
+    <owl:Class rdf:about="&News;schema:GovernmentOrganization">
+        <rdfs:subClassOf rdf:resource="&News;schema:Organization"/>
+        <rdfs:comment>News and news events occur in government organizations</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:MotorCycle -->
+
+    <owl:Class rdf:about="&News;schema:MotorCycle">
+        <rdfs:subClassOf rdf:resource="&News;schema:Vehicle"/>
+        <rdfs:comment>MotorCycles are involved in news, news events and news articles</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:NewsArticle -->
+
+    <owl:Class rdf:about="&News;schema:NewsArticle">
+        <rdfs:comment>Every news article has category and topic</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:Organization -->
+
+    <owl:Class rdf:about="&News;schema:Organization">
+        <rdfs:comment>News and news events occur in organizations</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:Person -->
+
+    <owl:Class rdf:about="&News;schema:Person">
+        <rdfs:comment>Persons are involved in News, News events and news articles</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:Place -->
+
+    <owl:Class rdf:about="&News;schema:Place">
+        <rdfs:comment>News Events occur in places</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:Reviews -->
+
+    <owl:Class rdf:about="&News;schema:Reviews">
+        <rdfs:subClassOf rdf:resource="&News;NewsEngagement"/>
+        <rdfs:comment>News, news events, and news articles got reviews</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:Sports -->
+
+    <owl:Class rdf:about="&News;schema:Sports">
+        <rdfs:subClassOf rdf:resource="&News;NewsTypes"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:Subscription -->
+
+    <owl:Class rdf:about="&News;schema:Subscription">
+        <rdfs:subClassOf rdf:resource="&News;NewsEngagement"/>
+        <rdfs:comment>News, news events, and news articles got subscriptions</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:Time -->
+
+    <owl:Class rdf:about="&News;schema:Time">
+        <rdfs:comment>News Events occur on times</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#schema:Vehicle -->
+
+    <owl:Class rdf:about="&News;schema:Vehicle">
+        <rdfs:comment>Vehciles are involved in news, news events and news articles</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Blogger1 -->
+
+    <owl:NamedIndividual rdf:about="&News;Blogger1">
+        <rdf:type rdf:resource="&News;Bloggers"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Broadcaster1 -->
+
+    <owl:NamedIndividual rdf:about="&News;Broadcaster1">
+        <rdf:type rdf:resource="&News;Broadcaster"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#City1 -->
+
+    <owl:NamedIndividual rdf:about="&News;City1">
+        <rdf:type rdf:resource="&News;schema:City"/>
+        <News:News rdf:datatype="&xsd;string"></News:News>
+        <News:Names rdf:datatype="&xsd;string">Butler</News:Names>
+        <News:Contain rdf:resource="&News;Country1"/>
+        <News:Contain rdf:resource="&News;Event1"/>
+        <News:Contain rdf:resource="&News;EventCategory1"/>
+        <News:Contain rdf:resource="&News;NewsArticle1"/>
+        <News:Contain rdf:resource="&News;NewsEngagement1"/>
+        <News:Contain rdf:resource="&News;Organization1"/>
+        <News:Contain rdf:resource="&News;Person1"/>
+        <News:Contain rdf:resource="&News;Place1"/>
+        <News:Contain rdf:resource="&News;Time1"/>
+        <News:Contain rdf:resource="&News;Vehicle1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Country1 -->
+
+    <owl:NamedIndividual rdf:about="&News;Country1">
+        <rdf:type rdf:resource="&News;schema:Country"/>
+        <News:DateOfOccurance rdf:datatype="&xsd;string">13, July 2024</News:DateOfOccurance>
+        <News:News rdf:datatype="&xsd;string">Assassination attempt on Trump</News:News>
+        <News:EventHappenedIn rdf:datatype="&xsd;string">Butler, Pennsylvania</News:EventHappenedIn>
+        <News:Names rdf:datatype="&xsd;string">United States</News:Names>
+        <News:Contain rdf:resource="&News;City1"/>
+        <News:Contain rdf:resource="&News;Event1"/>
+        <News:Contain rdf:resource="&News;EventCategory1"/>
+        <News:Contain rdf:resource="&News;NewsArticle1"/>
+        <News:Contain rdf:resource="&News;NewsEngagement1"/>
+        <News:Contain rdf:resource="&News;Organization1"/>
+        <News:Contain rdf:resource="&News;Person1"/>
+        <News:Contain rdf:resource="&News;Place1"/>
+        <News:Contain rdf:resource="&News;Time1"/>
+        <News:Contain rdf:resource="&News;Vehicle1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Criminal1 -->
+
+    <owl:NamedIndividual rdf:about="&News;Criminal1">
+        <rdf:type rdf:resource="&News;Criminals"/>
+        <News:Names rdf:datatype="&xsd;string"></News:Names>
+        <News:InvolvedIn rdf:resource="&News;City1"/>
+        <News:InvolvedIn rdf:resource="&News;Country1"/>
+        <News:InvolvedIn rdf:resource="&News;Event1"/>
+        <News:InvolvedIn rdf:resource="&News;Organization1"/>
+        <News:InvolvedIn rdf:resource="&News;Person1"/>
+        <News:InvolvedIn rdf:resource="&News;Place1"/>
+        <News:InvolvedIn rdf:resource="&News;Time1"/>
+        <News:InvolvedIn rdf:resource="&News;Vehicle1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Event1 -->
+
+    <owl:NamedIndividual rdf:about="&News;Event1">
+        <rdf:type rdf:resource="&News;NewsEvents"/>
+        <News:News rdf:datatype="&xsd;string"></News:News>
+        <News:DateOfOccurance rdf:datatype="&xsd;string">13, July 2024</News:DateOfOccurance>
+        <News:Names rdf:datatype="&xsd;string">Attack</News:Names>
+        <News:CategorizedAs rdf:datatype="&xsd;string">Terrorism</News:CategorizedAs>
+        <News:TookPalcedIn rdf:resource="&News;City1"/>
+        <News:Contain rdf:resource="&News;City1"/>
+        <News:TookPalcedIn rdf:resource="&News;Country1"/>
+        <News:Contain rdf:resource="&News;Country1"/>
+        <News:Contain rdf:resource="&News;Event2"/>
+        <News:Contain rdf:resource="&News;EventCategory1"/>
+        <News:Contain rdf:resource="&News;NewsArticle1"/>
+        <News:Contain rdf:resource="&News;NewsEngagement1"/>
+        <News:TookPalcedIn rdf:resource="&News;Organization1"/>
+        <News:Contain rdf:resource="&News;Organization1"/>
+        <News:Contain rdf:resource="&News;Person1"/>
+        <News:TookPalcedIn rdf:resource="&News;Place1"/>
+        <News:Contain rdf:resource="&News;Place1"/>
+        <News:Contain rdf:resource="&News;Time1"/>
+        <News:TookPalcedIn rdf:resource="&News;Time1"/>
+        <News:Contain rdf:resource="&News;Vehicle1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Event2 -->
+
+    <owl:NamedIndividual rdf:about="&News;Event2">
+        <rdf:type rdf:resource="&News;NewsEvents"/>
+        <News:News rdf:datatype="&xsd;string"></News:News>
+        <News:Names rdf:datatype="&xsd;string"></News:Names>
+        <News:CategorizedAs rdf:datatype="&xsd;string"></News:CategorizedAs>
+        <News:DateOfOccurance rdf:datatype="&xsd;string"></News:DateOfOccurance>
+        <News:Contain rdf:resource="&News;City1"/>
+        <News:Contain rdf:resource="&News;Country1"/>
+        <News:Contain rdf:resource="&News;Event1"/>
+        <News:Contain rdf:resource="&News;EventCategory1"/>
+        <News:Contain rdf:resource="&News;NewsArticle1"/>
+        <News:Contain rdf:resource="&News;NewsEngagement1"/>
+        <News:Contain rdf:resource="&News;Organization1"/>
+        <News:Contain rdf:resource="&News;Person1"/>
+        <News:Contain rdf:resource="&News;Place1"/>
+        <News:Contain rdf:resource="&News;Time1"/>
+        <News:Contain rdf:resource="&News;Vehicle1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#EventCategory1 -->
+
+    <owl:NamedIndividual rdf:about="&News;EventCategory1">
+        <rdf:type rdf:resource="&News;EventCategory"/>
+        <News:CategorizedAs rdf:datatype="&xsd;string"></News:CategorizedAs>
+        <News:News rdf:datatype="&xsd;string"></News:News>
+        <News:Names rdf:datatype="&xsd;string">Serious Attempt</News:Names>
+        <News:Contain rdf:resource="&News;City1"/>
+        <News:Contain rdf:resource="&News;Country1"/>
+        <News:Contain rdf:resource="&News;Event1"/>
+        <News:Contain rdf:resource="&News;EventCategory1"/>
+        <News:Contain rdf:resource="&News;NewsArticle1"/>
+        <News:Contain rdf:resource="&News;NewsEngagement1"/>
+        <News:Contain rdf:resource="&News;Organization1"/>
+        <News:Contain rdf:resource="&News;Person1"/>
+        <News:Contain rdf:resource="&News;Place1"/>
+        <News:Contain rdf:resource="&News;Time1"/>
+        <News:Contain rdf:resource="&News;Vehicle1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Journalist1 -->
+
+    <owl:NamedIndividual rdf:about="&News;Journalist1">
+        <rdf:type rdf:resource="&News;Journalist"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#NewsArticle1 -->
+
+    <owl:NamedIndividual rdf:about="&News;NewsArticle1">
+        <rdf:type rdf:resource="&News;schema:NewsArticle"/>
+        <News:Names rdf:datatype="&xsd;string"></News:Names>
+        <News:CategorizedAs rdf:datatype="&xsd;string"></News:CategorizedAs>
+        <News:DateOfOccurance rdf:datatype="&xsd;string"></News:DateOfOccurance>
+        <News:Contain rdf:resource="&News;Broadcaster1"/>
+        <News:Contain rdf:resource="&News;City1"/>
+        <News:Contain rdf:resource="&News;Country1"/>
+        <News:Contain rdf:resource="&News;Event1"/>
+        <News:Contain rdf:resource="&News;EventCategory1"/>
+        <News:Contain rdf:resource="&News;Journalist1"/>
+        <News:Contain rdf:resource="&News;NewsArticle1"/>
+        <News:Contain rdf:resource="&News;NewsEngagement1"/>
+        <News:Contain rdf:resource="&News;Organization1"/>
+        <News:Contain rdf:resource="&News;Person1"/>
+        <News:Contain rdf:resource="&News;Place1"/>
+        <News:Contain rdf:resource="&News;Time1"/>
+        <News:Contain rdf:resource="&News;Vehicle1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#NewsEngagement1 -->
+
+    <owl:NamedIndividual rdf:about="&News;NewsEngagement1">
+        <rdf:type rdf:resource="&News;NewsEngagement"/>
+        <News:DateOfOccurance rdf:datatype="&xsd;string"></News:DateOfOccurance>
+        <News:Contain rdf:resource="&News;City1"/>
+        <News:Contain rdf:resource="&News;Country1"/>
+        <News:Contain rdf:resource="&News;Event1"/>
+        <News:Contain rdf:resource="&News;EventCategory1"/>
+        <News:Contain rdf:resource="&News;NewsArticle1"/>
+        <News:Contain rdf:resource="&News;NewsEngagement1"/>
+        <News:Contain rdf:resource="&News;Organization1"/>
+        <News:Contain rdf:resource="&News;Person1"/>
+        <News:Contain rdf:resource="&News;Place1"/>
+        <News:Contain rdf:resource="&News;Time1"/>
+        <News:Contain rdf:resource="&News;Vehicle1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Organization1 -->
+
+    <owl:NamedIndividual rdf:about="&News;Organization1">
+        <rdf:type rdf:resource="&News;schema:Organization"/>
+        <News:Names rdf:datatype="&xsd;string"></News:Names>
+        <News:Contain rdf:resource="&News;City1"/>
+        <News:Contain rdf:resource="&News;Country1"/>
+        <News:Contain rdf:resource="&News;Event1"/>
+        <News:Contain rdf:resource="&News;EventCategory1"/>
+        <News:Contain rdf:resource="&News;NewsArticle1"/>
+        <News:Contain rdf:resource="&News;NewsEngagement1"/>
+        <News:Contain rdf:resource="&News;Organization1"/>
+        <News:Contain rdf:resource="&News;Person1"/>
+        <News:Contain rdf:resource="&News;Place1"/>
+        <News:Contain rdf:resource="&News;Time1"/>
+        <News:Contain rdf:resource="&News;Vehicle1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Person1 -->
+
+    <owl:NamedIndividual rdf:about="&News;Person1">
+        <rdf:type rdf:resource="&News;schema:Person"/>
+        <News:Names rdf:datatype="&xsd;string"></News:Names>
+        <News:InvolvedIn rdf:resource="&News;City1"/>
+        <News:InvolvedIn rdf:resource="&News;Country1"/>
+        <News:InvolvedIn rdf:resource="&News;Event1"/>
+        <News:Broadcast rdf:resource="&News;Event1"/>
+        <News:Advertised rdf:resource="&News;Event1"/>
+        <News:Reports rdf:resource="&News;Event1"/>
+        <News:InvolvedIn rdf:resource="&News;Event2"/>
+        <News:InvolvedIn rdf:resource="&News;EventCategory1"/>
+        <News:Reports rdf:resource="&News;EventCategory1"/>
+        <News:Broadcast rdf:resource="&News;EventCategory1"/>
+        <News:Advertised rdf:resource="&News;EventCategory1"/>
+        <News:InvolvedIn rdf:resource="&News;NewsArticle1"/>
+        <News:Broadcast rdf:resource="&News;NewsArticle1"/>
+        <News:Edits rdf:resource="&News;NewsArticle1"/>
+        <News:Advertised rdf:resource="&News;NewsArticle1"/>
+        <News:Reports rdf:resource="&News;NewsArticle1"/>
+        <News:InvolvedIn rdf:resource="&News;NewsEngagement1"/>
+        <News:HasEngagement rdf:resource="&News;NewsEngagement1"/>
+        <News:InvolvedIn rdf:resource="&News;Organization1"/>
+        <News:InvolvedIn rdf:resource="&News;Place1"/>
+        <News:InvolvedIn rdf:resource="&News;Vehicle1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Place1 -->
+
+    <owl:NamedIndividual rdf:about="&News;Place1">
+        <rdf:type rdf:resource="&News;schema:Place"/>
+        <News:Names rdf:datatype="&xsd;string"></News:Names>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Time1 -->
+
+    <owl:NamedIndividual rdf:about="&News;Time1">
+        <rdf:type rdf:resource="&News;schema:Time"/>
+        <News:Contain rdf:resource="&News;City1"/>
+        <News:Contain rdf:resource="&News;Country1"/>
+        <News:Contain rdf:resource="&News;Event1"/>
+        <News:Contain rdf:resource="&News;EventCategory1"/>
+        <News:Contain rdf:resource="&News;NewsArticle1"/>
+        <News:Contain rdf:resource="&News;NewsEngagement1"/>
+        <News:Contain rdf:resource="&News;Organization1"/>
+        <News:Contain rdf:resource="&News;Person1"/>
+        <News:Contain rdf:resource="&News;Place1"/>
+        <News:Contain rdf:resource="&News;Time1"/>
+        <News:Contain rdf:resource="&News;Vehicle1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#Vehicle1 -->
+
+    <owl:NamedIndividual rdf:about="&News;Vehicle1">
+        <rdf:type rdf:resource="&News;schema:Vehicle"/>
+        <News:Names rdf:datatype="&xsd;string"></News:Names>
+        <News:Contain rdf:resource="&News;City1"/>
+        <News:Advertised rdf:resource="&News;City1"/>
+        <News:Contain rdf:resource="&News;Country1"/>
+        <News:Advertised rdf:resource="&News;Country1"/>
+        <News:Advertised rdf:resource="&News;Event1"/>
+        <News:Contain rdf:resource="&News;Event1"/>
+        <News:Contain rdf:resource="&News;EventCategory1"/>
+        <News:Advertised rdf:resource="&News;EventCategory1"/>
+        <News:Contain rdf:resource="&News;NewsArticle1"/>
+        <News:Advertised rdf:resource="&News;NewsArticle1"/>
+        <News:Contain rdf:resource="&News;NewsEngagement1"/>
+        <News:Advertised rdf:resource="&News;NewsEngagement1"/>
+        <News:Contain rdf:resource="&News;Organization1"/>
+        <News:Advertised rdf:resource="&News;Organization1"/>
+        <News:Contain rdf:resource="&News;Person1"/>
+        <News:Advertised rdf:resource="&News;Person1"/>
+        <News:Advertised rdf:resource="&News;Place1"/>
+        <News:Contain rdf:resource="&News;Place1"/>
+        <News:Advertised rdf:resource="&News;Time1"/>
+        <News:Contain rdf:resource="&News;Time1"/>
+        <News:Advertised rdf:resource="&News;Vehicle1"/>
+        <News:Contain rdf:resource="&News;Vehicle1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/hadia/ontologies/2023/10/News#terrorist1 -->
+
+    <owl:NamedIndividual rdf:about="&News;terrorist1">
+        <rdf:type rdf:resource="&News;Terrorists"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
