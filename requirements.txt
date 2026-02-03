@@ -1,0 +1,8 @@
+llama-index
+llama-index-embeddings-huggingface
+llama-index-vector-stores-neo4j
+neo4j==5.24.0
+openai==1.40.0
+jupyter
+sentence-transformers
+pypdf
